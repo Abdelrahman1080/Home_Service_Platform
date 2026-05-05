@@ -1,0 +1,17 @@
+api-gateway/
+│
+├── src/main/java/com/hsp/gateway/
+│
+│   ├── config/
+│   │   ├── GatewayConfig.java
+│   │
+│   ├── filter/
+│   │   ├── AuthFilter.java
+│   │
+│   ├── routes/
+│   │   ├── UserRoute.java
+│   │   ├── BookingRoute.java
+│   │   ├── CatalogRoute.java
+│
+└── src/main/resources/
+    └── application.yml

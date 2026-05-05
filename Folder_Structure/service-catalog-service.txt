@@ -1,0 +1,45 @@
+service-catalog-service/
+│
+├── src/main/java/com/hsp/catalog/
+│
+│   ├── entity/
+│   │   ├── ServiceCategory.java
+│   │   ├── ServiceOffer.java
+│
+│   ├── repository/
+│   │   ├── ServiceCategoryRepository.java
+│   │   ├── ServiceOfferRepository.java
+│
+│   ├── ejb/
+│   │   ├── ServiceCatalogBean.java   ← (NEW / IMPORTANT - Business Logic EJB)
+│
+│   ├── service/
+│   │   ├── ServiceCatalogService.java  ← (Thin layer or can be merged with EJB if you want)
+│
+│   ├── controller/
+│   │   ├── ServiceCatalogController.java
+│
+│   ├── dto/
+│   │   ├── CreateCategoryRequest.java
+│   │   ├── CreateOfferRequest.java
+│   │   ├── OfferResponse.java
+│
+│   ├── messaging/
+│   │   ├── RabbitMQProducer.java   ← (NEW - for events like offer created/updated)
+│   │   ├── RabbitMQConfig.java
+│
+│   ├── event/
+│   │   ├── OfferCreatedEvent.java
+│   │   ├── OfferUpdatedEvent.java
+│
+│   ├── client/
+│   │   ├── UserServiceClient.java   ← (optional but correct microservice design)
+│
+│   ├── config/
+│   │   ├── AppConfig.java
+│
+│   ├── util/
+│   │   ├── ResponseUtil.java        ← (optional shared style)
+│
+└── src/main/resources/
+    └── application.properties

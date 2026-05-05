@@ -1,0 +1,46 @@
+user-service/
+│
+├── src/main/java/com/hsp/userservice/
+│
+│   ├── entity/
+│   │   ├── User.java
+│   │   ├── Wallet.java
+│   │
+│   ├── enums/
+│   │   ├── Role.java   (ADMIN / CUSTOMER / PROVIDER)
+│   │
+│   ├── ejb/
+│   │   ├── UserBean.java
+│   │   ├── WalletBean.java
+│   │   ├── AdminBean.java
+│   │
+│   ├── repository/
+│   │   ├── UserRepository.java
+│   │   ├── WalletRepository.java
+│   │
+│   ├── service/
+│   │   ├── UserService.java
+│   │   ├── WalletService.java
+│   │
+│   ├── controller/
+│   │   ├── AdminController.java
+│   │   ├── CustomerController.java
+│   │   ├── ProviderController.java
+│   │
+│   ├── dto/
+│   │   ├── RegisterRequest.java
+│   │   ├── LoginRequest.java
+│   │   ├── AddFundsRequest.java
+│   │
+
+│   │
+│   └── util/
+│       ├── ResponseUtil.java
+|       |____ AuthUtil.java
+|       |____ SessionStore.java  
+│
+├── src/main/resources/
+│   └── META-INF/
+│       └── persistence.xml
+│
+└── pom.xml

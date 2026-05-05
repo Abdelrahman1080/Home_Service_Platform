@@ -1,0 +1,21 @@
+notification-service/
+│
+├── messaging/
+│   ├── RabbitMQConsumer.java   ← يستقبل events
+│   ├── RabbitMQConfig.java
+│
+├── event/
+│   ├── BookingCreatedEvent.java
+│   ├── BookingFailedEvent.java
+│
+├── service/
+│   ├── NotificationService.java
+│
+├── controller/
+│   ├── NotificationController.java  ← REST API ترجع JSON
+│
+├── repository/
+│   ├── NotificationRepository.java
+│
+├── entity/
+│   ├── Notification.java
