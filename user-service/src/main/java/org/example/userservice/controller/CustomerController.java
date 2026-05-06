@@ -6,6 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
+
 import org.example.userservice.dto.*;
 import org.example.userservice.ejb.*;
 import org.example.userservice.entity.User;
@@ -102,17 +103,4 @@ public class CustomerController {
         return ResponseUtil.success("result", result);
     }
 
-    @GET
-    @Path("/auth/me")
-    public Object getMe(@Context HttpHeaders headers) {
-
-        String sessionId = headers.getHeaderString("X-SESSION-ID");
-
-        User user = SessionStore.getUser(sessionId);
-
-        if (user == null)
-            return ResponseUtil.error("invalid session");
-
-        return ResponseUtil.success("user found", user);
-    }
 }

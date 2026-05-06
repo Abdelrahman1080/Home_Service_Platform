@@ -5,41 +5,39 @@ service-catalog-service/
 │   ├── entity/
 │   │   ├── ServiceCategory.java
 │   │   ├── ServiceOffer.java
-│
+│   │
 │   ├── repository/
 │   │   ├── ServiceCategoryRepository.java
 │   │   ├── ServiceOfferRepository.java
-│
-│   ├── ejb/
-│   │   ├── ServiceCatalogBean.java   ← (NEW / IMPORTANT - Business Logic EJB)
-│
+│   │
 │   ├── service/
-│   │   ├── ServiceCatalogService.java  ← (Thin layer or can be merged with EJB if you want)
-│
+│   │   ├── ServiceCatalogService.java   ← 🔥 BUSINESS LOGIC هنا
+|   |    |---- UserServiceClient 
+│   │
 │   ├── controller/
 │   │   ├── ServiceCatalogController.java
-│
+│   │
 │   ├── dto/
 │   │   ├── CreateCategoryRequest.java
 │   │   ├── CreateOfferRequest.java
 │   │   ├── OfferResponse.java
-│
+│   │
 │   ├── messaging/
-│   │   ├── RabbitMQProducer.java   ← (NEW - for events like offer created/updated)
+│   │   ├── RabbitMQProducer.java
 │   │   ├── RabbitMQConfig.java
-│
+│   │
 │   ├── event/
 │   │   ├── OfferCreatedEvent.java
 │   │   ├── OfferUpdatedEvent.java
-│
-│   ├── client/
-│   │   ├── UserServiceClient.java   ← (optional but correct microservice design)
-│
+│   │
+ 
 │   ├── config/
 │   │   ├── AppConfig.java
-│
+│   │
 │   ├── util/
-│   │   ├── ResponseUtil.java        ← (optional shared style)
+│   │   ├── ResponseUtil.java
 │
-└── src/main/resources/
-    └── application.properties
+├── src/main/resources/
+│   └── application.properties
+│
+└── pom.xml

@@ -1,38 +1,43 @@
 booking-service/
 │
-├── src/main/java/com/hsp/booking/
+├── entity/
+│   ├── Booking.java
+│   ├── BookingStatus.java
 │
-│   ├── entity/
-│   │   ├── Booking.java
-│   │   ├── BookingStatus.java
-│   │
-│   ├── repository/
-│   │   ├── BookingRepository.java
-│   │
-│   ├── service/
-│   │   ├── BookingService.java
-│   │
-│   ├── controller/
-│   │   ├── BookingController.java
-│   │
-│   ├── dto/
-│   │   ├── BookingRequest.java
-│   │   ├── BookingResponse.java
-│   │
-│   ├── client/
-│   │   ├── UserServiceClient.java
-│   │   ├── CatalogServiceClient.java
-│   │
-│   ├── messaging/
-│   │   ├── RabbitMQProducer.java
-│   │   ├── RabbitMQConfig.java
-│   │
-│   ├── event/
-│   │   ├── BookingCreatedEvent.java
-│   │   ├── BookingFailedEvent.java
-│   │
-│   ├── config/
-│   │   ├── RestTemplateConfig.java
+├── repository/
+│   ├── BookingRepository.java
 │
-└── src/main/resources/
-    └── application.properties
+├── service/
+│   ├── BookingService.java
+│
+├── controller/
+│   ├── BookingController.java
+│
+├── dto/
+│   ├── BookingRequest.java
+│   ├── BookingResponse.java
+│
+├── client/
+│   ├── UserServiceClient.java
+│   ├── CatalogServiceClient.java
+│   ├── WalletClient.java
+│
+├── messaging/
+│   ├── RabbitMQProducer.java
+│   ├── RabbitMQConfig.java
+│
+├── event/
+│   ├── BookingCreatedEvent.java
+│   ├── BookingRejectedEvent.java   ← بدل Failed
+│   ├── PaymentSuccessEvent.java   ← NEW
+│   ├── PaymentRollbackEvent.java
+│
+├── config/
+│   ├── RestTemplateConfig.java
+│
+├── exception/
+│   ├── InsufficientBalanceException.java
+│   ├── ServiceUnavailableException.java
+│
+├── util/
+│   ├── ResponseUtil.java
