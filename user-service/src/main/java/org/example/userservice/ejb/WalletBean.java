@@ -28,12 +28,20 @@ public class WalletBean {
         return "success";
     }
 
-    public String deduct(Long userId, double amount) {
-        Wallet w = repo.findByUserId(userId);
-        if (w == null) return "wallet not found";
-        if (w.getBalance() < amount) return "insufficient";
-        w.setBalance(w.getBalance() - amount);
-        repo.update(w);
-        return "success";
+
+
+    public boolean deduct(Long userId, Double amount) {
+        Double balance = getBalance(userId);
+
+        if (balance < amount)
+            return false;
+
+        addFunds(userId, -amount);
+
+        return true;
+    }
+
+    public void refund(Long userId, Double amount) {
+        addFunds(userId, amount);
     }
 }

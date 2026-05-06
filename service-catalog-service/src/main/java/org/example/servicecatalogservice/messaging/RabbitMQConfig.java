@@ -10,7 +10,7 @@ import org.springframework.amqp.support.converter.SimpleMessageConverter;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String EXCHANGE = "catalog.exchange";
+    public static final String EXCHANGE = "catalog.events";
 
     public static final String OFFER_CREATED_QUEUE = "offer.created.queue";
     public static final String OFFER_UPDATED_QUEUE = "offer.updated.queue";

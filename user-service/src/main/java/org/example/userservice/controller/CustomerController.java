@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 
+import jakarta.ws.rs.core.Response;
 import org.example.userservice.dto.*;
 import org.example.userservice.ejb.*;
 import org.example.userservice.entity.User;
@@ -101,6 +102,56 @@ public class CustomerController {
         String result = walletBean.addFunds(user.getId(), req.amount);
 
         return ResponseUtil.success("result", result);
+    }
+
+    /*@POST
+    @Path("/wallet/deduct")
+    public Object deduct(DeductRequest req) {
+
+        boolean success = walletBean.deduct(req.userId, req.amount);
+
+        if (!success)
+            //return error not responseUtl
+            return new WalletResponse(false, "insufficient balance");
+
+        return new WalletResponse(true, "deducted");
+    }*/
+//    @POST
+//    @Path("/wallet/deduct")
+//    public Response deduct(DeductRequest req) {
+//
+//        boolean success = walletBean.deduct(req.userId, req.amount);
+//
+//        if (!success) {
+//            return Response
+//                    .status(400)
+//                    .entity(new WalletResponse(false, "insufficient balance"))
+//                    .build();
+//        }
+//
+//        return Response
+//                .ok(new WalletResponse(true, "deducted"))
+//                .build();
+//    }
+
+    @POST
+    @Path("/wallet/deduct")
+    public Boolean deduct(DeductRequest req) {
+
+        boolean success = walletBean.deduct(req.userId, req.amount);
+
+            return success;
+
+    }
+
+
+    @POST
+    @Path("/wallet/refund")
+    public Object refund(DeductRequest req) {
+
+        walletBean.refund(req.userId, req.amount);
+
+        return ResponseUtil.success("refunded", null);
     }
 
 }

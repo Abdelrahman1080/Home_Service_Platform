@@ -23,10 +23,18 @@ public class ServiceCatalogService {
     private final RabbitMQProducer producer;
     private final UserServiceClient userServiceClient;
 
-    public ServiceCategory createCategory(String name) {
+    public ServiceCategory createCategory(String sessionId, String name) {
+
+        var user = userServiceClient.validate(sessionId);
+
+        if (user == null || !"ADMIN".equals(user.getRole())) {
+            throw new RuntimeException("Unauthorized");
+        }
+
         ServiceCategory category = ServiceCategory.builder()
                 .name(name)
                 .build();
+
         return categoryRepo.save(category);
     }
 
@@ -59,10 +67,17 @@ public class ServiceCatalogService {
         return saved;
     }
 
-    public List<ServiceOffer> getAllOffers() {
+    public List<ServiceOffer> getAllOffers(String sessionId) {
+
+        var user = userServiceClient.validate(sessionId);
+
+        if (user == null ||
+                (!"ADMIN".equals(user.getRole()) && !"PROVIDER".equals(user.getRole()))) {
+            throw new RuntimeException("Unauthorized");
+        }
+
         return offerRepo.findAll();
     }
-
     public List<ServiceOffer> getOffersByCategory(Long categoryId) {
         return offerRepo.findByCategoryId(categoryId);
     }
@@ -93,5 +108,10 @@ public class ServiceCatalogService {
                 .build());
 
         return updated;
+    }
+
+    public ServiceOffer getOfferById(Long id) {
+        return offerRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Offer not found"));
     }
 }
