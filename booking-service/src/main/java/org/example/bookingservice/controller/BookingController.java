@@ -27,6 +27,10 @@ public class BookingController {
     public Object getBookingsForCustomer(@RequestHeader("X-SESSION-ID") String sessionId) {
         return ResponseUtil.success(service.getBookingsForCustomer(sessionId));
     }
+    @GetMapping("/provider/all")
+    public Object getBookingsForProvider(@RequestHeader("X-SESSION-ID") String sessionId) {
+        return ResponseUtil.success(service.getBookingsForProvider(sessionId));
+    }
 
     @GetMapping("/admin/all")
     public Object getAllBookings(@RequestHeader("X-SESSION-ID") String sessionId) {

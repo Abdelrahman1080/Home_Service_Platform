@@ -36,20 +36,28 @@ public class BookingService {
     public List<Booking> getBookingsForCustomer(String sessionId) {
 
         var user = userClient.validate(sessionId);
-
         if (user == null || !"CUSTOMER".equals(user.getRole())) {
-            throw new RuntimeException("Unauthorized");
+            throw new RuntimeException("Unauthorized Must be a customer");
         }
 
+
         return repo.findByCustomerId(user.getUserId());
+
+    }
+    public List<Booking> getBookingsForProvider(String sessionId) {
+
+        var user = userClient.validate(sessionId);
+        if (user == null || !"PROVIDER".equals(user.getRole())) {
+            throw new RuntimeException("Unauthorized Must be a provider");
+        }
+        return repo.findByProviderId(user.getUserId());
     }
     public Booking createBooking(String sessionId, Long offerId) {
 
         // 1️⃣ validate user
         var user = userClient.validate(sessionId);
 
-        if (user == null || !"CUSTOMER".equals(user.getRole()) &&!"ADMIN".equals(user.getRole()))
-            throw new RuntimeException("Unauthorized");
+
 
         // 2️⃣ get offer
         var offer = catalogClient.getOffer(offerId);
